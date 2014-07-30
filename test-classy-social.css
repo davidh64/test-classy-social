@@ -1,1 +1,28 @@
 .classysocial {margin-left: auto; margin-right: auto; margin-top: 70px; }
+.classysocial .default .english {
+    background-image: url("C:/Users/David Hamilton/Desktop/jquery-classysocial/classysocial/images/default/english.png");
+}
+div.menu-language-switcher-container{
+	display: block;
+	width: 100%;
+	height: 83px;
+	color: gray;
+	position: relative;
+}
+#menu-language-switcher li {
+	background-color: #25a8e0;
+	display: inline-block;
+	margin-left: 0.0125em;
+	width: 2.5em;
+	height: 1.5em;
+	line-height: 2.5em;
+	text-align: center;
+	z-index: 0;
+}
+li {
+	font-family: "Open Sans", arial, sans-serif;
+}
+#menu-language-toggle-button{
+	background-color: orange;
+	z-index: 1;
+}

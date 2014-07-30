@@ -3,15 +3,17 @@
 	
 	<head>
 		<meta charset="utf-8"/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="file:///C:/Users/David Hamilton/Desktop/jquery-classysocial/classysocial/js/jquery.classysocial.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="file:///C:/Users/David Hamilton/Desktop/jquery-classysocial/classysocial/css/jquery.classysocial.min.css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://www.buuteeq.com/resources/lib/classy-social/js/jquery.classysocial.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://www.buuteeq.com/resources/lib/classy-social/css/jquery.classysocial.min.css" />
 		<link rel="stylesheet" type="text/css" href="test-classy-social.css" />
+		<script src="file:///C:/Users/David Hamilton/Documents/GitHub/test-classy-social/animateMenu.js"></script>
 		<script type="text/javascript">
-			    $(document).ready(function(){
-			    	$('.classysocial').ClassySocial();
-			    });
-		    </script>
+			$(document).ready(function(){
+				$('.classysocial').ClassySocial();
+				$('#menu-language-switcher').animateMenu();
+			});
+		</script>
 	</head>
 	<body>
 		<div class="classysocial"
@@ -19,15 +21,25 @@
 		    data-arc-length="180"
 		    data-image-type="facebook"
 		    data-picture="picozu"
-		    data-google-handle="picozu"
-		    data-facebook-handle="picozu"
-		    data-linkedin-handle="picozu"
-		    data-twitter-handle="picozu_editor"
+		    data-google-handle="buuteeq"
+		    data-facebook-handle="buuteeq"
+		    data-linkedin-handle="buuteeq"
 		    data-orientation="line"
 		    data-gap="75"
 		    data-radius="90"
-		    data-networks="google,facebook,linkedin,twitter"></div>
-		    
+		    data-networks="google,facebook,linkedin">
+		    <div class="scontainer default">
+		    	<a class="sbutton english" title="Check out my Yahoo profile" target="_blank" href="http://profile.yahoo.com/y/pulse/buuteeq" data-network="english">English</a>
+		    </div>
+	    </div>
+
+			<div class="menu-language-switcher-container">
+				<ul id="menu-language-switcher" class="menu">
+					<li id="menu-item-15264" class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-15264"><a href="http://www.buuteeq.com/blog/english/">EN</a></li>
+					<li id="menu-item-15265" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-15265"><a href="http://www.buuteeq.com/blog/espanol/">ES</a></li>
+					<li id="menu-item-15266" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-15266"><a href="http://www.buuteeq.com/blog/portugues/">PT</a></li>
+				</ul>
+			</div>	
 	</body>
 
 </html>
