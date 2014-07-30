@@ -13,7 +13,7 @@
             menuContainer.find('li').each(function() {
                 $(this).css({
                     display: 'inline-block',
-                    width: 2.5 + 'em',
+                    width: 2.5 + 'em', // Javascript does dynamic typing, so you can write these out as strings '2.5em'
                     height: 2.5 + 'em',
                     lineHeight: 2.5 + 'em',
                     textAlign: 'center',
