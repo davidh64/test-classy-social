@@ -6,8 +6,11 @@ div.menu-language-switcher-container{
 	display: block;
 	width: 100%;
 	height: 83px;
-	color: gray;
+	background-color: gray;
 	position: relative;
+}
+#menu-language-switcher ul {
+	padding-left: 30px;
 }
 #menu-language-switcher li {
 	background-color: #25a8e0;
