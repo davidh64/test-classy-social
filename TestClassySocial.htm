@@ -11,7 +11,14 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$('.classysocial').ClassySocial();
-				$('#menu-language-switcher').animateMenu();
+				$('#menu-language-switcher').animateMenu({
+					clickButton: "#foo",
+					speed: 400,
+					spacing: 4,
+					css: {
+						color: 'blue'
+					}
+				});
 			});
 		</script>
 	</head>

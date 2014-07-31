@@ -4,9 +4,9 @@
         var menuContainer = $(this); // object for the list of links
         var toggleButton;
         var startX; // position of first list item
-        var speed = 400; // time the animation lasts in milliseconds
+        var speed = 400; // time the animation lasts in milliseconds SET THIS AS AN OPTION
         var menuLength = menuContainer.find('li').length; // length of the list
-        var spacing = 4; // space between buttons after the animation is complete
+        var spacing = 4; // space between buttons after the animation is complete SET THIS AS AN OPTION
 
         /* adds an item to the beginning of the list for the button that will expand and collapse the menu */
         /* arranges z-indices of list items to appear properly during animations */
@@ -14,7 +14,7 @@
         var createMenu = function(){
             var z = 0;
             menuContainer.prepend('<li id="menu-toggle-button" style="color: blue;"></li>'); // creates the toggle button
-            toggleButton = $('#menu-toggle-button');
+            toggleButton = $('#menu-toggle-button'); // Using this id everywhere could get messy. Could you use a variable instead? Is there a way to set the id value as an option on calling animateMenu() ?
             menuContainer.find('li').each(function() {
                 $(this).css({
                     display: 'inline-block',
@@ -28,7 +28,7 @@
                 $(this).hide();
                 z++;
             });
-            toggleButton.css({ // Using this id everywhere could get messy. Could you use a variable instead? Is there a way to set the id value as an option on calling animateMenu() ?
+            toggleButton.css({
                 zIndex: z
             });
             startX = toggleButton.position().left;
