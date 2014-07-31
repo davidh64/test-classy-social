@@ -1,5 +1,5 @@
 (function($) {
-    $.fn.animateMenu = function(speed ,spacing, direction){
+    $.fn.animateMenu = function(speed ,spacing, direction, buttonStyle){
 
         // speed: time the animation lasts in milliseconds SET THIS AS AN OPTION
         // spacing: space between buttons after the animation is complete SET THIS AS AN OPTION
@@ -14,19 +14,30 @@
         /* hides all items except the toggle button */
         var createMenu = function(){
             var z = 0;
+            var defaultStyle = {
+                display: 'inline-block',
+                width: '2.5em',
+                height: '2.5em',
+                backgroundColor: 'blue',
+                lineHeight: '2.5em',
+                textAlign: 'center',
+            };
             menuContainer.css({
+                listStyleType: 'none',
                 margin: 'inherit',
                 padding: 'inherit'
             });
-            menuContainer.prepend('<li id="menu-toggle-button"></li>'); // creates the toggle button
-            toggleButton = $('#menu-toggle-button'); // Using this id everywhere could get messy. Could you use a variable instead? Is there a way to set the id value as an option on calling animateMenu() ?
+            menuContainer.prepend('<li></li>'); // creates the toggle button
+            toggleButton = menuContainer.find('li').first(); // Using this id everywhere could get messy. Could you use a variable instead? Is there a way to set the id value as an option on calling animateMenu() ?
+            //toggleButton = menuContainer.prepend('<li></li>');
             menuContainer.find('li').each(function() {
                 $(this).css({
-                    display: 'inline-block',
-                    width: '2.5em',
-                    height: '2.5em',
-                    lineHeight: '2.5em',
-                    textAlign: 'center',
+                    display: defaultStyle.display,
+                    width: defaultStyle.width,
+                    height: defaultStyle.height,
+                    backgroundColor: defaultStyle.backgroundColor,
+                    lineHeight: defaultStyle.lineHeight,
+                    textAlign: defaultStyle.textAlign,
                     zIndex: z,
                     position: 'absolute'
                 });
@@ -37,6 +48,11 @@
                 zIndex: z
             });
             startX = toggleButton.position().left;
+            if(direction == 'right'){
+                startX = menuContainer.find('li').last().left;
+            } else {
+                startX = toggleButton.position().left;
+            }
             toggleButton.show();
         }
 
@@ -46,14 +62,11 @@
                 toggleButton.unbind('click', lineAnimate);
                 var delay = speed * menuLength;
                 menuContainer.find('li').each(function() { // Is there shared code between this and the slideOut function that you could re-use/abstract some way to compress the code?
-                     $(this).delay(delay).animate({
-                            left: startX
-                        }, speed, function(){
-                            if(!$(this).is('#menu-toggle-button')){
-                               $(this).hide();
-                            }
-                    });
-                    //slide(this, delay, startX, true);
+                    if(!$(this).is(toggleButton)){
+                        slide($(this), delay, startX, true);
+                    } else {
+                        slide($(this), delay, startX, false);
+                    }
                     delay -= speed - (0.4 * speed);
                 });
                 menuContainer.find('li').promise().done(function(){
@@ -65,10 +78,7 @@
                 var newPosition = 0;
                 var delay = 0;
                 menuContainer.find('li').each(function() { // Is there any way you could abstract these slideIn/slideOut functions and merely pass them variables?
-                    $(this).delay(delay).show().animate({
-                        left: newPosition
-                    }, speed);
-                    //slide(this, delay, newPosition, false);
+                    slide($(this), delay, newPosition, false);
                     if(direction == 'right'){
                         newPosition -= spacing;
                     } else {
@@ -85,15 +95,15 @@
         }
 
         /* function to abstract animation code, not working yet */
-        // var slide = function(item, delay, endPosition, shouldHide){
-        //     $(this).delay(delay).animate({
-        //             left: endPosition
-        //         }, speed, function(){
-        //             if(shouldHide){
-        //                $(this).hide();
-        //             }
-        //     });
-        // }
+        var slide = function(item, delay, endPosition, shouldHide){
+            item.delay(delay).show().animate({
+                    left: endPosition
+                }, speed, function(){
+                    if(shouldHide){
+                       $(this).hide();
+                    }
+            });
+        }
 
         createMenu();
         toggleButton.bind('click', lineAnimate);
