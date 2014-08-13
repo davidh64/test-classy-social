@@ -7,7 +7,7 @@ div.menu-language-switcher-container{
 	position: relative;
 }
 #menu-language-switcher ul {
-	
+	margin: 50px;
 }
 #menu-language-switcher li {
 	background-color: #25a8e0;

@@ -23,12 +23,13 @@
         var createMenu = function(){
             var z = 0;
             menuContainer.css({
-                listStyleType: 'none'//,
+                listStyleType: 'none',
                 //margin: 'inherit',
-                //padding: 'inherit'
+                //padding: '0px'
             });
             menuContainer.prepend('<li></li>'); // creates the toggle button
             toggleButton = menuContainer.find('li').first();
+            startX = toggleButton.position().left;
             menuContainer.find('li').each(function() {
                 $(this).css({
                     display: 'inline-block',
@@ -46,7 +47,7 @@
             toggleButton.css({
                 zIndex: z
             });
-            startX = toggleButton.position().left /* + toggleButton.outerWidth() */;
+            
             toggleButton.show();
         }
 
@@ -67,7 +68,7 @@
                 menuContainer.removeClass('open');
             } else { // the list is not expanded
                 toggleButton.unbind('click', lineAnimate);
-                var newPosition = 0;
+                var newPosition = startX;
                 var delay = options.speed;
                 menuContainer.find('li').each(function() {
                     slide($(this), delay, newPosition, false);
@@ -88,7 +89,7 @@
         /* function to abstract animation code */
         var slide = function(item, delay, endPosition, shouldHide){
             item.delay(delay).show().animate({
-                    left: startX + endPosition
+                    left: endPosition
                 }, options.speed, function(){
                     if(shouldHide){
                        $(this).hide();
