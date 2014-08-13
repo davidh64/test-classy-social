@@ -23,13 +23,15 @@
         var createMenu = function(){
             var z = 0;
             menuContainer.css({
-                listStyleType: 'none'//,
-                //margin: 'inherit',
-                //padding: '0px'
+                listStyleType: 'none'
             });
             menuContainer.prepend('<li></li>'); // creates the toggle button
             toggleButton = menuContainer.find('li').first();
-            startX = toggleButton.position().left;
+            if(options.direction == 'right'){
+                startX = toggleButton.position().left + (menuContainer.find('li').length - 1) * options.spacing;
+            } else {
+                startX = toggleButton.position().left;
+            }
             menuContainer.find('li').each(function() {
                 $(this).css({
                     display: 'inline-block',
