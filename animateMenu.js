@@ -6,8 +6,8 @@
         var startX; // position of first list item, or last item if sliding right
         var menuLength = menuContainer.find('li').length; // length of the list
         var options = {
-            speed: 400, // time the animation lasts in milliseconds SET THIS AS AN OPTION
-            spacing: 70, // space between buttons after the animation is complete SET THIS AS AN OPTION
+            speed: 400, // time the animation lasts in milliseconds
+            spacing: 70, // space between buttons after the animation is complete
             direction: 'left', //animation slides to the left or right. default is left
             width: '2.5em',
             height: '2.5em',
@@ -27,15 +27,8 @@
                 //margin: 'inherit',
                 //padding: 'inherit'
             });
-            // if(direction != 'right'){
-            //     menuContainer.prepend('<li></li>'); // creates the toggle button
-            //     toggleButton = menuContainer.find('li').first(); // Using this id everywhere could get messy. Could you use a variable instead? Is there a way to set the id value as an option on calling animateMenu() ?
-            // } else {
-            //     menuContainer.append('<li></li>'); // creates the toggle button
-            //     toggleButton = menuContainer.find('li').last(); // Using this id everywhere could get messy. Could you use a variable instead? Is there a way to set the id value as an option on calling animateMenu() ?
-            // }
             menuContainer.prepend('<li></li>'); // creates the toggle button
-            toggleButton = menuContainer.find('li').first(); // Using this id everywhere could get messy. Could you use a variable instead? Is there a way to set the id value as an option on calling animateMenu() ?
+            toggleButton = menuContainer.find('li').first();
             menuContainer.find('li').each(function() {
                 $(this).css({
                     display: 'inline-block',
@@ -62,7 +55,7 @@
             if(menuContainer.hasClass('open')){ // the list is expanded
                 toggleButton.unbind('click', lineAnimate);
                 var delay = options.speed * menuLength - 1;
-                menuContainer.find('li').each(function() { // Is there shared code between this and the slideOut function that you could re-use/abstract some way to compress the code?
+                menuContainer.find('li').each(function() {
                     if(!$(this).is(toggleButton)){
                         slide($(this), delay, startX, true);
                     }
@@ -76,7 +69,7 @@
                 toggleButton.unbind('click', lineAnimate);
                 var newPosition = 0;
                 var delay = options.speed;
-                menuContainer.find('li').each(function() { // Is there any way you could abstract these slideIn/slideOut functions and merely pass them variables?
+                menuContainer.find('li').each(function() {
                     slide($(this), delay, newPosition, false);
                     if(options.direction == 'right'){
                         newPosition -= options.spacing;
