@@ -1,6 +1,6 @@
 .classysocial {margin-left: auto; margin-right: auto; margin-top: 70px; }
 .classysocial .default .english {
-    background-image: url("C:/Users/David Hamilton/Desktop/jquery-classysocial/classysocial/images/default/english.png");
+    background-image: url("C:/Users/David Hamilton/Desktop/jquery-classysocial/classysocial/images/default/english.png"); /* Can you rewrite this as a relative link? and make sure the file is in the repo? */
 }
 div.menu-language-switcher-container{
 	display: block;
