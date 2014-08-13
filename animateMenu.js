@@ -23,7 +23,7 @@
         var createMenu = function(){
             var z = 0;
             menuContainer.css({
-                listStyleType: 'none',
+                listStyleType: 'none'//,
                 //margin: 'inherit',
                 //padding: '0px'
             });
@@ -39,7 +39,8 @@
                     lineHeight: options.lineHeight,
                     textAlign: options.textAlign,
                     zIndex: z,
-                    position: 'absolute'
+                    position: 'absolute',
+                    left: startX
                 });
                 $(this).hide();
                 z++;
