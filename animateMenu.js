@@ -27,7 +27,9 @@
         var createMenu = function () {
             var z = 0;
             menuContainer.css({
-                position: 'absolute'
+                position: 'absolute',
+                width: '175px',
+                right: '5px'
             });
             menuContainer.prepend('<li></li>'); // creates the toggle button
             toggleButton = menuContainer.find('li').first();
