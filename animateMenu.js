@@ -11,7 +11,9 @@
             direction: 'left', //animation slides to the left or right. default is left
             width: '2.5em',
             height: '2.5em',
+            backgroundImage: '',
             backgroundColor: 'blue',
+            color: 'white',
             lineHeight: '2.5em',
             textAlign: 'center',
             buttonText: '',
@@ -25,7 +27,6 @@
         var createMenu = function () {
             var z = 0;
             menuContainer.css({
-                listStyleType: 'none',
                 position: 'absolute'
             });
             menuContainer.prepend('<li></li>'); // creates the toggle button
@@ -39,12 +40,14 @@
             } else {
                 startX = toggleButton.position().left;
             }
+            
             menuContainer.find('li').each(function () {
                 $(this).css({
                     display: 'inline-block',
                     width: options.width,
                     height: options.height,
                     backgroundColor: options.backgroundColor,
+                    color: options.color,
                     lineHeight: options.lineHeight,
                     textAlign: options.textAlign,
                     zIndex: z,
@@ -55,6 +58,7 @@
                 z++;
             });
             toggleButton.css({
+                backgroundImage: options.backgroundImage,
                 zIndex: z
             });
             toggleButton.show();
