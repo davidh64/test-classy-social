@@ -7,10 +7,10 @@
         var menuLength = menuContainer.find('li').length; // length of the list
         var options = {
             speed: 400, // time the animation lasts in milliseconds
-            spacing: 70, // space between buttons after the animation is complete
+            spacing: 20, // space between buttons after the animation is complete
             direction: 'left', //animation slides to the left or right. default is left
-            width: '2.5em',
-            height: '2.5em',
+            width: 40,
+            height: 40,
             backgroundImage: '',
             backgroundColor: 'blue',
             color: 'white',
@@ -28,21 +28,19 @@
             var z = 0;
             menuContainer.css({
                 position: 'absolute',
-                width: '175px',
-                right: '5px'
+                width: options.width * (menuContainer.find('li').length + 1) + options.spacing * menuContainer.find('li').length
             });
+            if (options.direction == 'right') {
+                menuContainer.css('right', '0px');
+            }
             menuContainer.prepend('<li></li>'); // creates the toggle button
             toggleButton = menuContainer.find('li').first();
             toggleButton.html(options.buttonText);
             for (var i = 0; i < options.buttonClass.length; i++) {
                 toggleButton.addClass(options.buttonClass[i]);
             }
-            if (options.direction == 'right') {
-                startX = toggleButton.position().left + (menuContainer.find('li').length - 1) * options.spacing;
-            } else {
-                startX = toggleButton.position().left;
-            }
-            
+            startX = 0;
+
             menuContainer.find('li').each(function () {
                 $(this).css({
                     display: 'inline-block',
@@ -53,12 +51,17 @@
                     lineHeight: options.lineHeight,
                     textAlign: options.textAlign,
                     zIndex: z,
-                    position: 'absolute',
-                    left: startX
+                    position: 'absolute'
                 });
+                if (options.direction == 'right') {
+                    $(this).css({ right: startX });
+                } else {
+                    $(this).css({ left: startX });
+                }
                 $(this).hide();
                 z++;
             });
+
             toggleButton.css({
                 backgroundImage: options.backgroundImage,
                 zIndex: z
@@ -68,7 +71,6 @@
 
         /* function to expand or collapse the menu whenever the toggle button is clicked */
         var lineAnimate = function () {
-            startX = toggleButton.position().left;
             if (menuContainer.hasClass('open')) { // the list is expanded
                 toggleButton.unbind('click', lineAnimate);
                 var delay = options.speed * menuLength - 2;
@@ -76,7 +78,7 @@
                     if (!$(this).is(toggleButton)) {
                         slide($(this), delay, startX, true);
                     }
-                    delay -= options.speed - (0.4 * options.speed);
+                    delay -= (0.6 * options.speed);
                 });
                 menuContainer.find('li').promise().done(function () {
                     toggleButton.bind('click', lineAnimate);
@@ -88,12 +90,8 @@
                 var delay = 0;
                 menuContainer.find('li').each(function () {
                     slide($(this), delay, newPosition, false);
-                    if (options.direction == 'right') {
-                        newPosition -= options.spacing;
-                    } else {
-                        newPosition += options.spacing;
-                    }
-                    delay += options.speed - (0.4 * options.speed);
+                    newPosition += (options.spacing + options.width);
+                    delay += (0.6 * options.speed);
                 });
                 menuContainer.find('li').promise().done(function () {
                     toggleButton.bind('click', lineAnimate);
@@ -104,13 +102,23 @@
 
         /* function to abstract animation code */
         var slide = function (item, delay, endPosition, shouldHide) {
-            item.delay(delay).show().animate({
-                left: endPosition
-            }, options.speed, 'linear', function () {
-                if (shouldHide) {
-                    $(this).hide();
-                }
-            });
+            if (options.direction == 'right') {
+                item.delay(delay).show().animate({
+                    right: endPosition
+                }, options.speed, 'linear', function () {
+                    if (shouldHide) {
+                        $(this).hide();
+                    }
+                });
+            } else {
+                item.delay(delay).show().animate({
+                    left: endPosition
+                }, options.speed, 'linear', function () {
+                    if (shouldHide) {
+                        $(this).hide();
+                    }
+                });
+            }
         }
 
         createMenu();
