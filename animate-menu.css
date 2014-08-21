@@ -26,3 +26,7 @@ li {
 	background-color: orange;
 	z-index: 1;
 }
+
+.menu-language-switcher-container{
+    position: relative;
+}
