@@ -1,7 +1,7 @@
 (function ($) {
     $.fn.animateMenu = function (userOptions) {
 
-        var menuContainer = $(this); // object for the list of links
+        var menuContainer = $(this).addClass('animate-menu__container'); // object for the list of links
         var toggleButton;
         var startX; // position of first list item, or last item if sliding right
         var menuLength = menuContainer.find('li').length; // length of the list
@@ -9,13 +9,6 @@
             speed: 400, // time the animation lasts in milliseconds
             spacing: 20, // space between buttons after the animation is complete
             direction: 'left', //animation slides to the left or right. default is left
-            width: 40,
-            height: 40,
-            backgroundImage: '',
-            backgroundColor: 'blue',
-            color: 'white',
-            lineHeight: '2.5em',
-            textAlign: 'center',
             buttonText: '',
             buttonClass: []
         }
@@ -26,10 +19,6 @@
         /* hides all items except the toggle button */
         var createMenu = function () {
             var z = 0;
-            menuContainer.css({
-                position: 'absolute',
-                width: options.width * (menuContainer.find('li').length + 1) + options.spacing * menuContainer.find('li').length
-            });
             if (options.direction == 'right') {
                 menuContainer.css('right', '0px');
             }
@@ -43,13 +32,13 @@
 
             menuContainer.find('li').each(function () {
                 $(this).css({
-                    display: 'inline-block',
-                    width: options.width,
-                    height: options.height,
-                    backgroundColor: options.backgroundColor,
-                    color: options.color,
-                    lineHeight: options.lineHeight,
-                    textAlign: options.textAlign,
+                    // display: 'inline-block',
+                    // width: options.width,
+                    // height: options.height,
+                    // backgroundColor: options.backgroundColor,
+                    // color: options.color,
+                    // lineHeight: options.lineHeight,
+                    // textAlign: options.textAlign,
                     zIndex: z,
                     position: 'absolute'
                 });
@@ -63,7 +52,7 @@
             });
 
             toggleButton.css({
-                backgroundImage: options.backgroundImage,
+                // backgroundImage: options.backgroundImage,
                 zIndex: z
             });
             toggleButton.show();
@@ -89,8 +78,9 @@
                 var newPosition = startX;
                 var delay = 0;
                 menuContainer.find('li').each(function () {
+                    var itemWidth = $(this).outerWidth();
                     slide($(this), delay, newPosition, false);
-                    newPosition += (options.spacing + options.width);
+                    newPosition += (options.spacing + itemWidth);
                     delay += (0.6 * options.speed);
                 });
                 menuContainer.find('li').promise().done(function () {
