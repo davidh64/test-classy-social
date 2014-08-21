@@ -32,13 +32,6 @@
 
             menuContainer.find('li').each(function () {
                 $(this).css({
-                    // display: 'inline-block',
-                    // width: options.width,
-                    // height: options.height,
-                    // backgroundColor: options.backgroundColor,
-                    // color: options.color,
-                    // lineHeight: options.lineHeight,
-                    // textAlign: options.textAlign,
                     zIndex: z,
                     position: 'absolute'
                 });
@@ -52,7 +45,6 @@
             });
 
             toggleButton.css({
-                // backgroundImage: options.backgroundImage,
                 zIndex: z
             });
             toggleButton.show();
