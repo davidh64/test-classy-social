@@ -3,6 +3,7 @@
 }
 .animate-menu__container li:first-of-type {
 	background-image: url('images/globe.png');
+	background-size: 100%;
 }
 .animate-menu__container li {
     background-color: blue;

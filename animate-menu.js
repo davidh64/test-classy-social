@@ -19,9 +19,10 @@
         /* hides all items except the toggle button */
         var createMenu = function () {
             var z = 0;
-            if (options.direction == 'right') {
-                menuContainer.css('right', '0px');
-            }
+            /* Unnecessary because the placement in the page will be determined by CSS */
+            // if (options.direction == 'right') {
+            //     menuContainer.css('right', '0px');
+            // }
             menuContainer.prepend('<li></li>'); // creates the toggle button
             toggleButton = menuContainer.find('li').first();
             toggleButton.html(options.buttonText);
