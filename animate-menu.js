@@ -10,7 +10,8 @@
             spacing: 20, // space between buttons after the animation is complete
             direction: 'left', //animation slides to the left or right. default is left
             buttonText: '',
-            buttonClass: []
+            buttonClass: [],
+            labelText: 'Languages'
         }
         $.extend(options, userOptions);
 
@@ -49,6 +50,7 @@
                 zIndex: z
             });
             toggleButton.show();
+            menuContainer.prepend('<p class="animate-menu__label"><strong>' + options.labelText + '</strong></p>');
         }
 
         /* function to expand or collapse the menu whenever the toggle button is clicked */
@@ -64,9 +66,11 @@
                 });
                 menuContainer.find('li').promise().done(function () {
                     toggleButton.bind('click', lineAnimate);
+                    menuContainer.find('.animate-menu__label').fadeIn();
                 });
                 menuContainer.removeClass('open');
             } else { // the list is not expanded
+                menuContainer.find('.animate-menu__label').fadeOut();
                 toggleButton.unbind('click', lineAnimate);
                 var newPosition = startX;
                 var delay = 0;
